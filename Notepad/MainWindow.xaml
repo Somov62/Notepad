@@ -1,0 +1,86 @@
+﻿<Window x:Class="Notepad.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Notepad"
+        mc:Ignorable="d"
+        Title="{Binding FileName, StringFormat=' {0} - Блокнот'}" Height="450" Width="800" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Menu  Grid.Row="0" Background="White" Panel.ZIndex="5" FontStretch="SemiExpanded" >
+            <MenuItem Header="Файл" VerticalAlignment="Bottom">
+                <MenuItem Header="Создать" Click="CreateList_Click"/>
+                <MenuItem Header="Новое окно" Click="NewFile_Click"/>
+                <MenuItem Header="Открыть..." Click="OpenFile_Click"/>
+                <MenuItem Header="Сохранить" Click="Save_Click"/>
+                <MenuItem Header="Сохранить как..." Click="SaveAs_Click"/>
+                <Separator />
+                <MenuItem Header="Параметры страницы..." Click="SettingsPage_Click"/>
+                <MenuItem Header="Печать..." Click="Print_Click"/>
+                <Separator />
+                <MenuItem Header="Выход" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Правка" >
+                <MenuItem Header="Отменить" Click="Undo_Click"/>
+                <Separator/>
+                <MenuItem  x:Name="btnCut" Command="Cut" IsEnabled="False" Header="Вырезать" />
+                <MenuItem x:Name="btnCopy" Command="Copy" IsEnabled="False" Header="Копировать" />
+                <MenuItem Header="Вставить" Command="Paste" />
+                <MenuItem  x:Name="btnDelete" IsEnabled="False" Header="Удалить" Click="Delete_Click"/>
+                <MenuItem  x:Name="btnDeleteRow" Header="Удалить Строку" Click="DeleteRow_Click"/>
+                <Separator/>
+                <MenuItem x:Name="btnBing" IsEnabled="False" Header="Поиск с помощью Bing..." Click="FindBing_Click"/>
+                <MenuItem Header="Найти..."/>
+                <MenuItem Header="Найти далее"/>
+                <MenuItem Header="Найти ранее"/>
+                <MenuItem Header="Заменить"/>
+                <MenuItem Header="Перейти" Click="Go_Click"/>
+                <Separator/>
+                <MenuItem Header="Выделить всё"/>
+                <MenuItem Header="Время и дата"/>
+            </MenuItem>
+            <MenuItem Header="Формат">
+                <MenuItem Header="Перенос по словам" IsCheckable="True" />
+                <MenuItem Header="Шрифт..." Click="Font_Click"/>
+            </MenuItem>
+            <MenuItem Header="Вид"/>
+            <MenuItem Header="Справка"/>
+            <Menu.Effect>
+                <DropShadowEffect Direction="270" ShadowDepth="0" BlurRadius="4"  Color="#FFF0F0F0" Opacity="1" >
+                    
+                </DropShadowEffect>
+            </Menu.Effect>
+        </Menu>
+
+        <TextBox x:Name="textbox"
+                 Grid.Row="1" 
+                 BorderThickness="0" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                 ScrollViewer.VerticalScrollBarVisibility="Visible"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 SelectionChanged="Textbox_SelectionChanged" Background="White"
+                 Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        </TextBox>
+        <Border Grid.Row="2" Background="#FFF0F0F0" BorderBrush="#FFD7D7D7" BorderThickness="0, 1, 0, 0">
+            
+            <DockPanel HorizontalAlignment="Right" Margin="0, 0, 70, 0">
+                <StatusBarItem DockPanel.Dock="Right">
+                    <ResizeGrip Width="100" Height="25"/>
+                </StatusBarItem>
+                <TextBlock Text="UTF-8" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                <Border  Width="1" Margin="7, 0" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" DockPanel.Dock="Right" Background="#FFD7D7D7"/>
+                <TextBlock Text="Windows (CRLF)         " DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                <Border  Width="1" Margin="7, 0" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" DockPanel.Dock="Right" Background="#FFD7D7D7"/>
+                <TextBlock Text="100%" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
+                <Border  Width="1" Margin="7, 0" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" DockPanel.Dock="Right" Background="#FFD7D7D7"/>
+
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>

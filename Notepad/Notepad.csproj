@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <ApplicationIcon>Windows_Notepad_Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Windows_Notepad_Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Windows_Notepad_Icon.ico" />
+  </ItemGroup>
+
+</Project>
